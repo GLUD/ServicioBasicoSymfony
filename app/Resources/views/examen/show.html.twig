@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Examen</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ examan.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ examan.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Inicio</th>
+                <td>{% if examan.inicio %}{{ examan.inicio|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Fin</th>
+                <td>{% if examan.fin %}{{ examan.fin|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Activo</th>
+                <td>{% if examan.activo %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('examen_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('examen_edit', { 'id': examan.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

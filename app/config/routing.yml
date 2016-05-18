@@ -1,3 +1,7 @@
+glud_service_examen:
+    resource: "@GludServiceBundle/Controller/ExamenController.php"
+    type:     annotation
+
 glud_service:
     resource: "@GludServiceBundle/Resources/config/routing.php"
     prefix:   /

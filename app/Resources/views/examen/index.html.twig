@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Examen list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Inicio</th>
+                <th>Fin</th>
+                <th>Activo</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for examan in examens %}
+            <tr>
+                <td><a href="{{ path('examen_show', { 'id': examan.id }) }}">{{ examan.id }}</a></td>
+                <td>{{ examan.nombre }}</td>
+                <td>{% if examan.inicio %}{{ examan.inicio|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if examan.fin %}{{ examan.fin|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if examan.activo %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('examen_show', { 'id': examan.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('examen_edit', { 'id': examan.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('examen_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
